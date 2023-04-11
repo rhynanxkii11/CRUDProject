@@ -1,0 +1,57 @@
+﻿@model CRUDProject.Models.Employee
+@{
+    ViewData["Title"] = "Delete Employee";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+<h3>@ViewData["Title"]?.ToString()</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <b>Error:</b>
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<form method="post" action="Delete" class="form-control mt-3" autocomplete="off">
+    <div class="mb-3">
+        <label class="form-label" asp-for="Id"></label>
+        <input type="text" class="form-control" asp-for="Id" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="FirstName"></label>
+        <input type="text" class="form-control" asp-for="FirstName" readonly />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="LastName"></label>
+        <input type="text" class="form-control" asp-for="LastName" readonly />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="DateOfBirth"></label>
+        <input type="date" class="form-control" asp-for="DateOfBirth" readonly />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Email"></label>
+        <input type="email" class="form-control" asp-for="Email" readonly />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" asp-for="Salary"></label>
+        <input type="number" class="form-control" asp-for="Salary" readonly />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+    <div>
+        <div class="col-lg-12 d-grid">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+</form>
+@section Scripts
+    {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
